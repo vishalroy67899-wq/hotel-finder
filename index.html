@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Finder</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="home">
+
+<nav class="navbar">
+    <div class="logo">Hotel Finder</div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="hotels.html">Hotels</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</nav>
+
+<section class="hero">
+    <div class="hero-shape"></div>
+    <div class="hero-content">
+        <p class="eyebrow">Travel smarter</p>
+        <h1>Find the best hotel near your location</h1>
+        <p class="hero-text">Budget-friendly stays, instant search, and friendly booking suggestions — all in one clean website.</p>
+        <div class="hero-actions">
+            <a href="#finder" class="btn btn-primary">Search Hotels</a>
+            <a href="hotels.html" class="btn btn-secondary">View Rooms</a>
+        </div>
+    </div>
+</section>
+
+<section class="section section-alt">
+    <div class="section-grid">
+        <div class="feature-card">
+            <span class="feature-icon">📍</span>
+            <h3>Nearby hotels</h3>
+            <p>Find hotels close to your current location with a simple budget filter.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">💰</span>
+            <h3>Budget friendly</h3>
+            <p>Choose hotels in your price range and avoid expensive surprises.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">⚡</span>
+            <h3>Fast experience</h3>
+            <p>Minimal pages, clean layout, and quick navigation for a smooth search.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="finder">
+    <div class="section-head">
+        <p class="eyebrow">Search</p>
+        <h2>Find a hotel that suits your budget</h2>
+    </div>
+    <div class="finder-controls">
+        <label>
+            Min Budget (₹)
+            <input id="minBudget" type="number" value="0" min="0">
+        </label>
+        <label>
+            Max Budget (₹)
+            <input id="maxBudget" type="number" value="5000" min="0">
+        </label>
+        <label>
+            Radius (km)
+            <input id="radiusKm" type="number" value="10" min="1">
+        </label>
+        <label>
+            Map provider
+            <select id="mapProvider">
+                <option value="osm">OpenStreetMap</option>
+                <option value="google">Google Maps</option>
+            </select>
+        </label>
+        <input id="apiKey" type="text" placeholder="Google API key (optional)">
+        <button id="useLocationBtn" class="btn btn-secondary">Use My Location</button>
+        <button id="findBtn" class="btn btn-primary">Find Hotels</button>
+    </div>
+    <div id="status" class="status-text"></div>
+    <div id="map"></div>
+    <div id="result" class="results"></div>
+</section>
+
+<section class="section section-alt">
+    <div class="section-head">
+        <p class="eyebrow">Popular stays</p>
+        <h2>Recommended hotels for every traveler</h2>
+    </div>
+    <div class="cards">
+        <article class="card">
+            <div class="card-pill">₹2500 / night</div>
+            <h3>Grand Resort</h3>
+            <p>Luxury rooms with pool access and central location.</p>
+        </article>
+        <article class="card">
+            <div class="card-pill">₹1800 / night</div>
+            <h3>Royal Inn</h3>
+            <p>Comfortable stay with great food and friendly service.</p>
+        </article>
+        <article class="card">
+            <div class="card-pill">₹1200 / night</div>
+            <h3>Budget Stay</h3>
+            <p>Smart choice for travelers who want value on a small budget.</p>
+        </article>
+    </div>
+</section>
+
+<footer class="footer">
+    <p>© 2026 Hotel Finder — Simple search, fast booking, and smart stays.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
