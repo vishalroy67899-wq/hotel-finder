@@ -71,13 +71,7 @@ button {
     flex-direction: column;
     gap: 6px;
     padding: 8px;
-}
-
-.nav-toggle span {
-    display: block;
-    width: 26px;
-    height: 3px;
-    background: var(--text);
+        z-index: 1001;
     border-radius: 999px;
 }
 
@@ -487,6 +481,7 @@ textarea {
         transition: transform 0.3s ease;
         box-shadow: 0 20px 60px rgba(17, 45, 78, 0.12);
         pointer-events: none;
+        z-index: 1000;
     }
 
     .nav-links.open {
