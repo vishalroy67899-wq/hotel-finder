@@ -157,22 +157,75 @@ async function findHotels() {
 	}
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-	document.getElementById('findBtn').addEventListener('click', findHotels);
-	document.getElementById('useLocationBtn').addEventListener('click', async () => {
-		try {
-			const coords = await getUserLocation();
-			let status = document.getElementById('status');
-			if (!status) {
-				status = document.createElement('div');
-				status.id = 'status';
-				document.querySelector('.finder-controls').appendChild(status);
-			}
-			status.textContent = `Using location: ${coords.lat.toFixed(4)}, ${coords.lon.toFixed(4)}`;
-		} catch (err) {
-			alert('Unable to get location: ' + (err.message || err.code));
+async function handleContactSubmit(event) {
+	event.preventDefault();
+
+	const name = document.getElementById('contactName').value.trim();
+	const email = document.getElementById('contactEmail').value.trim();
+	const subject = document.getElementById('contactSubject').value.trim();
+	const message = document.getElementById('contactMessage').value.trim();
+	const status = document.getElementById('contactStatus');
+
+	if (!name || !email || !subject || !message) {
+		status.textContent = 'Please fill in all fields.';
+		status.style.color = 'crimson';
+		return;
+	}
+
+	status.textContent = 'Sending your message...';
+	status.style.color = '#000';
+
+	try {
+		const response = await fetch('/api/contact', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ name, email, subject, message })
+		});
+
+		if (!response.ok) {
+			const errorData = await response.json();
+			throw new Error(errorData.error || 'Server error');
 		}
-	});
+
+		const data = await response.json();
+		status.textContent = data.message || 'Message sent successfully.';
+		status.style.color = 'green';
+		document.getElementById('contactForm').reset();
+	} catch (err) {
+		status.textContent = 'Unable to send message: ' + (err.message || 'Try again later.');
+		status.style.color = 'crimson';
+	}
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+	const findBtn = document.getElementById('findBtn');
+	const useLocationBtn = document.getElementById('useLocationBtn');
+	const contactForm = document.getElementById('contactForm');
+
+	if (findBtn) {
+		findBtn.addEventListener('click', findHotels);
+	}
+
+	if (useLocationBtn) {
+		useLocationBtn.addEventListener('click', async () => {
+			try {
+				const coords = await getUserLocation();
+				let status = document.getElementById('status');
+				if (!status) {
+					status = document.createElement('div');
+					status.id = 'status';
+					document.querySelector('.finder-controls').appendChild(status);
+				}
+				status.textContent = `Using location: ${coords.lat.toFixed(4)}, ${coords.lon.toFixed(4)}`;
+			} catch (err) {
+				alert('Unable to get location: ' + (err.message || err.code));
+			}
+		});
+	}
+
+	if (contactForm) {
+		contactForm.addEventListener('submit', handleContactSubmit);
+	}
 
 	const navToggle = document.getElementById('navToggle');
 	const navLinks = document.getElementById('navLinks');

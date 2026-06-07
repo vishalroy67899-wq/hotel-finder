@@ -13,7 +13,7 @@
     <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
         <span></span>
         <span></span>
-        <span></span>
+        <span></span> 
     </button>
     <ul class="nav-links" id="navLinks">
         <li><a href="index.html">Home</a></li>
@@ -37,13 +37,16 @@
         <h2>Reach out to our support team</h2>
     </div>
     <div class="form-grid">
-        <input type="text" placeholder="Your name">
-        <input type="email" placeholder="Your email">
-        <input type="text" placeholder="Subject">
-        <textarea placeholder="Message"></textarea>
+        <form id="contactForm">
+            <input id="contactName" type="text" placeholder="Your name" required>
+            <input id="contactEmail" type="email" placeholder="Your email" required>
+            <input id="contactSubject" type="text" placeholder="Subject" required>
+            <textarea id="contactMessage" placeholder="Message" required></textarea>
+            <button id="contactSubmit" class="btn btn-primary" type="submit" style="margin-top: 24px;">Send Message</button>
+            <div id="contactStatus" class="form-status" style="margin-top: 16px;"></div>
+        </form>
     </div>
-    <button class="btn btn-primary" style="margin-top: 24px;">Send Message</button>
-</section></div>
+</section>
 
 <section class="section section-alt">
     <div class="panel">
@@ -53,11 +56,11 @@
         </article>
         <article class="panel-card">
             <h3>Phone</h3>
-            <p>+91,9153192566</p>
+            <p>+91.9153192566</p>
         </article>
         <article class="panel-card">
             <h3>Office</h3>
-            <p>PATNA, India</p>
+            <p>bihar,patna India</p>
         </article>
     </div>
 </section>
